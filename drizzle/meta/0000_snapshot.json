@@ -1,0 +1,131 @@
+{
+  "id": "45fad715-2b89-4da1-bdb2-4459667e88a2",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.t3-template-app_courses": {
+      "name": "t3-template-app_courses",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "credits": {
+          "name": "credits",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.t3-template-app_students": {
+      "name": "t3-template-app_students",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "nim": {
+          "name": "nim",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.t3-template-app_studentsOnCourses": {
+      "name": "t3-template-app_studentsOnCourses",
+      "schema": "",
+      "columns": {
+        "coursesId": {
+          "name": "coursesId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "stdId": {
+          "name": "stdId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "t3-template-app_studentsOnCourses_coursesId_t3-template-app_courses_id_fk": {
+          "name": "t3-template-app_studentsOnCourses_coursesId_t3-template-app_courses_id_fk",
+          "tableFrom": "t3-template-app_studentsOnCourses",
+          "tableTo": "t3-template-app_courses",
+          "columnsFrom": [
+            "coursesId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "t3-template-app_studentsOnCourses_stdId_t3-template-app_students_id_fk": {
+          "name": "t3-template-app_studentsOnCourses_stdId_t3-template-app_students_id_fk",
+          "tableFrom": "t3-template-app_studentsOnCourses",
+          "tableTo": "t3-template-app_students",
+          "columnsFrom": [
+            "stdId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "t3-template-app_studentsOnCourses_coursesId_stdId_pk": {
+          "name": "t3-template-app_studentsOnCourses_coursesId_stdId_pk",
+          "columns": [
+            "coursesId",
+            "stdId"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
